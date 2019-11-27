@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  local-postgres-compose:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "123"
+    ports:
+      - "15432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - /opt/crawler-trip-adivisor-postgresql:/var/lib/postgresql/data
+    networks:
+      - postgres-compose-network
+
+
+  local-pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "16543:80"
+    volumes:
+      - /opt/crawler-trip-adivisor-pgadmin:/var/lib/pgadmin
+    depends_on:
+      - local-postgres-compose
+    networks:
+      - postgres-compose-network
+
+networks:
+  postgres-compose-network:
+    driver: bridge

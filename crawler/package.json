@@ -1,0 +1,16 @@
+{
+  "name": "crawler-comentarios-trip-advisor",
+  "version": "1.0.0",
+  "description": "O crawler para extração de comentários do trip advisor",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "npm run test"
+  },
+  "author": "João Pedro Farias",
+  "license": "ISC",
+  "dependencies": {
+    "crawler": "1.2.1",
+    "pg": "^7.12.1"
+  }
+}
